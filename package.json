@@ -1,0 +1,26 @@
+{
+  "name": "ubuntu-nginx-wpcli-gearman-php7",
+  "version": "1.0.0",
+  "description": "An image based on Ubuntu with nginx, wpcli, WordPress, gearman, supervisor and php7(-fpm)",
+  "author": "Themeisle",
+  "license": "GPL-2.0+",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/preda-bogdan/ubuntu-nginx-wpcli-gearman-php7.git"
+  },
+  "bugs": {
+    "url": "https://github.com/preda-bogdan/ubuntu-nginx-wpcli-gearman-php7/issues"
+  },
+  "homepage": "https://github.com/preda-bogdan/ubuntu-nginx-wpcli-gearman-php7#readme",
+  "scripts": {
+    "install": "docker pull koalaman/shellcheck:stable && docker pull hadolint/hadolint:latest",
+    "dock-lint": "docker run --rm -i hadolint/hadolint < ./Dockerfile",
+    "shellcheck": "docker run -v \"$(pwd):/mnt\" koalaman/shellcheck *.sh && docker run -v \"$(pwd):/mnt\" koalaman/shellcheck ./*/*.sh"
+  },
+  "devDependencies": {
+    "pre-commit": "^1.2.2",
+    "@commitlint/cli": "^7.0.0",
+    "@commitlint/config-conventional": "^7.0.1",
+    "husky": "^0.14.3"
+  }
+}
