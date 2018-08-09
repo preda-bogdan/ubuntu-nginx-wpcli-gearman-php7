@@ -18,5 +18,5 @@ npm install
 Make sure the lint-ers pass.
 
 ## Authors
-- [Bogdan Preda](bogdan.preda@themeisle.com)
-- [Marius Cristea](marius.cristea@vertistudio.com)
+- [Bogdan Preda](mailto:bogdan.preda@themeisle.com)
+- [Marius Cristea](mailto:marius.cristea@vertistudio.com)
