@@ -15,7 +15,13 @@
   "scripts": {
     "install": "docker pull koalaman/shellcheck:stable && docker pull hadolint/hadolint:latest",
     "dock-lint": "docker run --rm -i hadolint/hadolint < ./Dockerfile",
-    "shellcheck": "docker run -v \"$(pwd):/mnt\" koalaman/shellcheck *.sh && docker run -v \"$(pwd):/mnt\" koalaman/shellcheck ./*/*.sh"
+    "shellcheck": "docker run -v \"$(pwd):/mnt\" koalaman/shellcheck *.sh"
+  },
+  "pre-commit": {
+    "run": [
+      "dock-lint",
+      "shellcheck"
+    ]
   },
   "devDependencies": {
     "pre-commit": "^1.2.2",
