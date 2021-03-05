@@ -19,21 +19,27 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
         curl \
 		nginx \
-	&& LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php && apt-get update && apt-get install -y --no-install-recommends \
-		php7.1-fpm \
-		php7.1-common \
-		php7.1-mbstring \
-		php7.1-xmlrpc \
-		php7.1-soap \
-		php7.1-gd \
-		php7.1-xml \
-		php7.1-intl \
-		php7.1-mysql \
-		php7.1-cli \
-		php7.1-mcrypt \
-		php7.1-zip \
-		php7.1-curl \
-		php7.1-dev \
+	&& LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php \
+	&& LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php \
+	&& LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/pkg-gearman \
+	&& apt-get update && apt-get install -y --no-install-recommends \
+		php7.2-fpm \
+		php7.2-common \
+		php7.2-mbstring \
+		php7.2-xmlrpc \
+		php7.2-soap \
+		php7.2-gd \
+		php7.2-xml \
+		php7.2-intl \
+		php7.2-mysql \
+		php7.2-cli \
+		php7.2-mcrypt \
+		php7.2-zip \
+		php7.2-curl \
+		php7.2-dev \
+		less \
+		php-mongodb \
+		php-gearman \
 		gearman-job-server \
 		libgearman-dev \
 		supervisor \
@@ -47,7 +53,7 @@ WORKDIR /pecl-gearman-master
 RUN phpize \
 	&& ./configure \
 	&& make install \
-	&& echo "extension=gearman.so" > /etc/php/7.1/mods-available/gearman.ini \
+	&& echo "extension=gearman.so" > /etc/php/7.2/mods-available/gearman.ini \
 	&& phpenmod -v ALL -s ALL gearman \
 	&& rm /master.zip \
 	&& rm -rf /pecl-gearman-master
@@ -107,10 +113,10 @@ RUN update-rc.d gearman-job-server defaults && update-rc.d supervisor defaults
 
 COPY nginx/nginx.conf /etc/nginx/sites-enabled/default
 
-COPY phpfpm/php-fpm.conf  /etc/php/7.1/fpm/pool.d/www.conf
+COPY phpfpm/php-fpm.conf  /etc/php/7.2/fpm/pool.d/www.conf
 
 # hadolint ignore=DL3001
-RUN service php7.1-fpm start
+RUN service php7.2-fpm start
 
 COPY wordpress/.htaccess /var/www/html/.htaccess
 

@@ -124,6 +124,6 @@ done
 # shellcheck disable=SC2093
 exec "$@"
 
-php-fpm7.1
+php-fpm7.2
 nginx -g 'daemon off;'
 supervisord -c /etc/supervisor/supervisord.conf
